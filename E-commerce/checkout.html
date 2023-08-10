@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <meta charSet="utf-8" />
+    <link rel="icon" type="image/png" href="https://next-shop-gilt.vercel.app/images/logo.png" />
+    <title>Shipping Address - Nextzone</title>
+        <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        #nprogress {
+            pointer-events: none;
+        }
+
+        #nprogress .bar {
+            background: #4f46e5;
+            position: fixed;
+            z-index: 9999;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
+        }
+
+        #nprogress .peg {
+            display: block;
+            position: absolute;
+            right: 0px;
+            width: 100px;
+            height: 100%;
+            box-shadow: 0 0 10px #4f46e5, 0 0 5px #4f46e5;
+            opacity: 1;
+            -webkit-transform: rotate(3deg) translate(0px, -4px);
+            -ms-transform: rotate(3deg) translate(0px, -4px);
+            transform: rotate(3deg) translate(0px, -4px);
+        }
+
+        #nprogress .spinner {
+            display: block;
+            position: fixed;
+            z-index: 1031;
+            top: 15px;
+            right: 15px;
+        }
+
+        #nprogress .spinner-icon {
+            width: 18px;
+            height: 18px;
+            box-sizing: border-box;
+            border: solid 2px transparent;
+            border-top-color: #4f46e5;
+            border-left-color: #4f46e5;
+            border-radius: 50%;
+            -webkit-animation: nprogresss-spinner 400ms linear infinite;
+            animation: nprogress-spinner 400ms linear infinite;
+        }
+
+        .nprogress-custom-parent {
+            overflow: hidden;
+            position: relative;
+        }
+
+        .nprogress-custom-parent #nprogress .spinner,
+        .nprogress-custom-parent #nprogress .bar {
+            position: absolute;
+        }
+
+        @-webkit-keyframes nprogress-spinner {
+            0% {
+                -webkit-transform: rotate(0deg);
+            }
+
+            100% {
+                -webkit-transform: rotate(360deg);
+            }
+        }
+
+        @keyframes nprogress-spinner {
+            0% {
+                transform: rotate(0deg);
+            }
+
+            100% {
+                transform: rotate(360deg);
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div id="__next" data-reactroot="">  
+        <div class="flex flex-col min-h-screen bg-gray-100">
+            <nav class="sticky top-0 bg-slate-900 bg-opacity-90 backdrop-blur backdrop-filter z-40"
+                data-headlessui-state="">
+                <div class="max-w-7xl mx-auto px-2 sm:px-4 lg:px-8">
+                    <div class="relative flex h-16 md:h-20 lg:gap-x-4 justify-between items-center">
+                        <div class="flex items-center justify-center gap-x-2">
+                            <div class="flex-shrink-0 flex items-center text-2xl font-bold focus:outline-none focus:ring px-3 py-2 rounded-sm gap-x-2 cursor-pointer"
+                                href="/"><span
+                                    style="box-sizing:border-box;display:inline-block;overflow:hidden;width:initial;height:initial;background:none;opacity:1;border:0;margin:0;padding:0;position:relative;max-width:100%"><span
+                                        style="box-sizing:border-box;display:block;width:initial;height:initial;background:none;opacity:1;border:0;margin:0;padding:0;max-width:100%"><img
+                                            style="display:block;max-width:100%;width:initial;height:initial;background:none;opacity:1;border:0;margin:0;padding:0"
+                                            alt="" aria-hidden="true"
+                                            src="data:image/svg+xml,%3csvg%20xmlns=%27http://www.w3.org/2000/svg%27%20version=%271.1%27%20width=%2732%27%20height=%2732%27/%3e" /></span><img
+                                        alt=""
+                                        src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7"
+                                        decoding="async" data-nimg="intrinsic" class="w-full h-full"
+                                        style="position:absolute;top:0;left:0;bottom:0;right:0;box-sizing:border-box;padding:0;border:none;margin:auto;display:block;width:0;height:0;min-width:100%;max-width:100%;min-height:100%;max-height:100%" /><noscript><img
+                                            alt=""
+                                            srcSet="https://www.next.co.uk/static-content/icons/header/next/v1/vision/new-next-black-logo.svg 1x, https://www.next.co.uk/static-content/icons/header/next/v1/vision/new-next-black-logo.svg 2x"
+                                            src="https://www.next.co.uk/static-content/icons/header/next/v1/vision/new-next-black-logo.svg"
+                                            decoding="async" data-nimg="intrinsic"
+                                            style="position:absolute;top:0;left:0;bottom:0;right:0;box-sizing:border-box;padding:0;border:none;margin:auto;display:block;width:0;height:0;min-width:100%;max-width:100%;min-height:100%;max-height:100%"
+                                            class="w-full h-full" loading="lazy" /></noscript></span><span
+                                    class="text-white hidden md:inline">NextShop</span></div>
+                            <div class="hidden lg:block lg:ml-6">
+                                <div class="flex space-x-4"><span
+                                        class="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium cursor-pointer"
+                                        href="/">Home</span><span
+                                        class="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium cursor-pointer"
+                                        href="/search">Shop Now</span></div>
+                            </div>
+                        </div>
+                        <div class="flex-1 flex justify-center items-center px-2 lg:ml-6 lg:justify-end">
+                            <form class="max-w-lg w-full lg:max-w-xs"><label for="search" class="sr-only">Search</label>
+                                <div class="relative">
+                                    <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                                            stroke-width="2" stroke="currentColor" aria-hidden="true"
+                                            class="h-5 w-5 text-gray-400">
+                                            <path stroke-linecap="round" stroke-linejoin="round"
+                                                d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
+                                        </svg></div><input type="search" id="search" name="search"
+                                        class="block w-full pl-10 pr-3 py-2 border border-transparent rounded-md leading-5 bg-gray-700 text-gray-300 placeholder-gray-400 focus:outline-none focus:bg-white focus:border-white focus:ring-white focus:text-gray-900 sm:text-sm lg:max-w-sm"
+                                        placeholder="Search" value="" />
+                                </div>
+                            </form>
+                        </div>
+                        <div class="flex items-center lg:hidden"><button
+                                class="inline-flex items-center justify-center p-2 rounded-md text-gray-400 hover:text-white focus:outline-none focus:ring-1 focus:ring-offset-1 focus:ring-offset-gray-800 focus:ring-white"
+                                id="headlessui-disclosure-button-undefined" type="button" aria-expanded="false"
+                                data-headlessui-state=""><span class="sr-only">Open main menu</span><svg
+                                    xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2"
+                                    stroke="currentColor" aria-hidden="true" class="block h-6 w-6">
+                                    <path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16">
+                                    </path>
+                                </svg></button></div>
+                        <div class="flex items-center"><button type="button"
+                                class="relative flex-shrink-0 p-2 text-gray-400 hover:text-white focus:outline-none focus:ring-1 focus:ring-offset-1 focus:ring-offset-gray-800 focus:ring-white rounded-md"
+                                href="/cart"><span class="sr-only">View Cart</span><svg
+                                    xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2"
+                                    stroke="currentColor" aria-hidden="true" class="h-6 w-6">
+                                    <path stroke-linecap="round" stroke-linejoin="round"
+                                        d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z"></path>
+                                </svg></button>
+                            <div class="relative flex-shrink-0 z-40" data-headlessui-state="">
+                                <div class="flex-shrink-0 text-white hidden lg:flex flex-col ml-4"><span
+                                        class="text-gray-300 font-medium">Hello,</span><button
+                                        class="focus:outline-none focus:ring-1 focus:ring-offset-1 focus:ring-offset-gray-800 focus:ring-white cursor-pointer"
+                                        id="headlessui-menu-button-undefined" type="button" aria-haspopup="true"
+                                        aria-expanded="false" data-headlessui-state=""><span
+                                         class="font-medium text-white" href="/login.html">Sign In</span></button></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </nav>
+            <div class="flex-1 container max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="max-w-2xl mx-auto pt-16 pb-24 px-4 sm:px-6 lg:max-w-7xl lg:px-8">
+                    <h1 class="text-3xl font-extrabold tracking-tight text-gray-900 sm:text-4xl">Checkout</h1>
+                    <div class="mt-2 grid grid-cols-1 lg:grid-cols-12 lg:gap-x-12 lg:items-start xl:gap-x-16">
+                        <form class="space-y-8 mt-6 px-4 sm:px-6 lg:col-span-7 order-last lg:order-none">
+                            <div>
+                                <h2 class="leading-6 font-medium text-2xl text-gray-900">Shipping Address</h2>
+                            </div>
+                            <div class="mt-6 grid grid-cols-1 gap-y-6 gap-x-4 sm:grid-cols-6">
+                                <div class="sm:col-span-4"><label for="name"
+                                        class="block text-sm font-medium text-gray-700">Full name</label>
+                                    <div class="mt-1"><input type="text" name="fullName" id="name"
+                                            autoComplete="given-name"
+                                            class="shadow-sm focus:ring-indigo-500 focus:border-indigo-500 block w-full sm:text-sm border-gray-300 rounded-md" />
+                                    </div>
+                                </div>
+                                <div class="sm:col-span-6"><label for="street-address"
+                                        class="block text-sm font-medium text-gray-700">Street address</label>
+                                    <div class="mt-1"><input type="text" name="address" id="street-address"
+                                            autoComplete="street-address"
+                                            class="shadow-sm focus:ring-indigo-500 focus:border-indigo-500 block w-full sm:text-sm border-gray-300 rounded-md" />
+                                    </div>
+                                </div>
+                                <div class="sm:col-span-2"><label for="city"
+                                        class="block text-sm font-medium text-gray-700">City</label>
+                                    <div class="mt-1"><input type="text" name="city" id="city"
+                                            autoComplete="address-level2"
+                                            class="shadow-sm focus:ring-indigo-500 focus:border-indigo-500 block w-full sm:text-sm border-gray-300 rounded-md" />
+                                    </div>
+                                </div>
+                                <div class="sm:col-span-2"><label for="region"
+                                        class="block text-sm font-medium text-gray-700">State / Province</label>
+                                    <div class="mt-1"><input type="text" name="state" id="region"
+                                            autoComplete="address-level1"
+                                            class="shadow-sm focus:ring-indigo-500 focus:border-indigo-500 block w-full sm:text-sm border-gray-300 rounded-md" />
+                                    </div>
+                                </div>
+                                <div class="sm:col-span-2"><label for="postal-code"
+                                        class="block text-sm font-medium text-gray-700">ZIP / Postal code</label>
+                                    <div class="mt-1"><input type="text" name="postalCode" id="postal-code"
+                                            autoComplete="postal-code"
+                                            class="shadow-sm focus:ring-indigo-500 focus:border-indigo-500 block w-full sm:text-sm border-gray-300 rounded-md" />
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="mt-5 flex justify-end gap-y-2"><button
+                                    class="flex justify-center py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 cursor-pointer">Use
+                                    guest address</button><button type="submit"
+                                    class="ml-3 inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">Proceed</button>
+                            </div>
+                        </form>
+                        <section aria-labelledby="summary-heading"
+                            class="mt-5 bg-gray-50 rounded-lg px-4 py-6 sm:p-6 lg:p-8 lg:mt-0 lg:col-span-5">
+                            <h2 id="summary-heading" class="text-lg font-medium text-gray-900">Order summary</h2>
+                            <div class="mt-4 bg-gray-50 border-gray-200 rounded-lg shadow-sm">
+                                <ul role="list" class="divide-y divide-gray-200"></ul>
+                            </div>
+                            <dl class="border-t border-gray-200 px-4 space-y-6 sm:px-6 mt-6">
+                                <div class="border-t border-gray-200 pt-4 flex items-center justify-between">
+                                    <dt class="text-sm text-gray-600">Subtotal</dt>
+                                    <dd class="text-sm font-medium text-gray-900">₹ <!-- -->0</dd>
+                                </div>
+                                <div class="border-t border-gray-200 pt-4 flex items-center justify-between">
+                                    <dt class="flex text-sm text-gray-600"><span>Tax(18%)</span></dt>
+                                    <dd class="text-sm font-medium text-gray-900">₹ <!-- -->0</dd>
+                                </div>
+                                <div class="border-t border-gray-200 pt-4 flex items-center justify-between">
+                                    <dt class="text-base font-medium text-gray-900">Order total</dt>
+                                    <dd class="text-base font-medium text-gray-900">₹ <!-- -->0</dd>
+                                </div>
+                            </dl>
+                        </section>
+                    </div>
+                </div>
+            </div>
+            <footer class="bg-gray-800 mt-4" aria-labelledby="footer-heading">
+                <div class="max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8">
+                    <div class="flex items-center justify-between">
+                        <p class="mt-2 text-base text-gray-300 md:mt-0">© 2023 NextShop. All rights reserved.</p>
+                    </div>
+                </div>
+            </footer>
+        </div>
+        <div style="position:fixed;z-index:9999;top:16px;left:16px;right:16px;bottom:16px;pointer-events:none"></div>
+    </div>
+</body>
+
+</html>
